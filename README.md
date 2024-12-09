@@ -21,7 +21,7 @@ This app was developed as part of the backend developer test for Crehana
 
 Copy and change the file .env.example to a .env file. Generate a new django key to replace ```SECRET_KEY = your-django-insecure-secret-key```
 
-## Local Development Setup
+## Quick Start with Docker
 
 1. Clone the repository:
 ```bash
@@ -29,35 +29,83 @@ git clone <repository-url>
 cd todo-project
 ```
 
-2. Create and activate a virtual environment:
+2. Start the development environment:
+```bash
+make dev-setup
+```
+
+This command will:
+- Build Docker images
+- Start containers
+- Run migrations
+
+The API will be available at http://localhost:8000
+
+## Available Make Commands
+
+### Development Commands
+```bash
+make build          # Build Docker images
+make up             # Start Docker containers
+make down           # Stop Docker containers
+make logs           # View Docker container logs
+make dev-setup      # Complete setup: build, up, and migrate
+make dev-reset      # Reset development environment
+```
+
+### Database Commands
+```bash
+make migrate        # Run Django migrations
+make db-flush       # Flush database
+make db-reset       # Reset database completely
+make superuser      # Create superuser
+```
+
+### Testing and Code Quality
+```bash
+make test          # Run tests
+make test-coverage # Run tests with coverage report
+make lint          # Run flake8 linting
+make format        # Format code with black
+```
+
+### Utility Commands
+```bash
+make shell         # Open Django shell
+make clean         # Remove Python compiled files and cache
+make requirements  # Update requirements.txt
+```
+
+### Help
+```bash
+make help          # Show all available commands
+```
+
+## Local Development Setup (Alternative)
+
+If you prefer to develop without Docker:
+
+1. Create and activate a virtual environment:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. Install dependencies:
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Run migrations:
+3. Run migrations:
 ```bash
 python manage.py migrate
 ```
 
-5. Start the development server:
+4. Start the development server:
 ```bash
 python manage.py runserver
 ```
 
-## Docker Setup
-
-2. Build and run using Docker Compose:
-```bash
-docker-compose up --build
-```
-
-The API will be available at http://localhost:8000
 
 ## API Documentation
 
